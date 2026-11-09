@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Lilás & Branca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+        
+        <div class="input-group">
+            <input type="number" id="numero1" placeholder="Primeiro número">
+            
+            <select id="operacao">
+                <option value="+">Adição (+)</option>
+                <option value="-">Subtração (-)</option>
+                <option value="*">Multiplicação (×)</option>
+                <option value="/">Divisão (÷)</option>
+                <option value="potencia">Potência (xʸ)</option>
+                <option value="raiz">Radiciação (ʸ√x)</option>
+            </select>
+            
+            <input type="number" id="numero2" placeholder="Segundo número">
+        </div>
+
+        <button onclick="calcular()">Calcular</button>
+        
+        <div class="resultado-container">
+            <h2>Resultado:</h2>
+            <div id="resultado">0</div>
+
+            <button><a href="dashboard.html">dashboard</a></button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

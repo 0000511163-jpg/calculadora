@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Testes - Calculadora Lilás & Branca</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-vial-circle-check"></i>
+            <span>TestHub</span>
+        </div>
+        <div class="app-title">
+            Dashboard de Uso & Testes Automatizados
+        </div>
+        <a href="index.html" class="btn btn-outline">
+            <i class="fa-solid fa-calculator"></i> Voltar à Calculadora
+        </a>
+    </header>
+
+    <div class="container">
+        
+        <!-- Métricas em Tempo Real do Uso da Calculadora -->
+        <h2 class="section-title">Métricas de Uso Real (Integrado via LocalStorage)</h2>
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon total">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Cálculos Realizados</h3>
+                    <div class="metric-value" id="realCalcCount">0</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon success">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Cálculos Válidos</h3>
+                    <div class="metric-value pass-text" id="realSuccessCount">0</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon danger">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Erros de Entrada</h3>
+                    <div class="metric-value fail-text" id="realErrorCount">0</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon rate">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Operação Favorita</h3>
+                    <div class="metric-value" id="topOperation">-</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ações Gerais -->
+        <div class="actions-bar">
+            <div class="left-actions">
+                <button class="btn btn-primary" onclick="runAllSuites()">
+                    <i class="fa-solid fa-play"></i> Executar Testes Automatizados
+                </button>
+                <button class="btn btn-secondary" onclick="clearResults()">
+                    <i class="fa-solid fa-rotate-left"></i> Limpar Resultados de Testes
+                </button>
+            </div>
+            <div class="right-actions">
+                <button class="btn btn-outline" onclick="resetUsageData()">
+                    <i class="fa-solid fa-trash-can"></i> Limpar Histórico de Uso
+                </button>
+            </div>
+        </div>
+
+        <!-- Layout de Suítes e Histórico -->
+        <div class="dashboard-grid">
+            
+            <div class="main-panel">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('suite', this)">
+                        <i class="fa-solid fa-layer-group"></i> Suítes Automatizadas
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('history', this)">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Cálculos
+                    </button>
+                </div>
+
+                <!-- Aba de Testes -->
+                <div id="tab-suite" class="tab-content active">
+                    <div class="test-suites-container" id="suitesContainer">
+                        <!-- Gerado dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Aba do Histórico de Uso -->
+                <div id="tab-history" class="tab-content">
+                    <div class="history-list" id="calcHistoryContainer">
+                        <!-- Gerado dinamicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Console de Saída -->
+            <div class="side-panel">
+                <div class="log-card">
+                    <div class="widget-header">
+                        <h2><i class="fa-solid fa-terminal"></i> Console de Execução</h2>
+                        <button class="btn-xs" onclick="clearConsole()">Limpar</button>
+                    </div>
+                    <div class="console-output" id="consoleLog">
+                        <div class="log-line info">[SYS] Dashboard sincronizado. Aguardando comandos...</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Inicializa a renderização da Dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboardData();
+        });
+    </script>
+</body>
+</html>
